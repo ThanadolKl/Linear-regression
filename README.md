@@ -158,7 +158,7 @@ autoplot(model2)
 > จะเห็นว่า กราฟที่ 1(บนซ้าย) Residuals vs fitted จะกระจายตัวกันแบบไม่มี Pattern และ กราฟที่ 2 (บนขวา) Normal Q-Q ข้อมูลกระจายตัวค่อน Normal มี Outliers อยู่ด้านบน ๆ
 ### 4. Equal variance
 
-# 5. Multicollinearity (check by VIF)
+### 5. Multicollinearity (check by VIF)
 > จากการดูความสัมพันธ์ของข้อมูลพบว่ามี x บางตัวที่มี Strong correlation แต่จากการกรองตัวแปรที่พอจะใช้ได้ ก็จำเป็นต้องใช้ตัวแปรที่มี strong correlation อันนี้ แล้วค่อยนำไปตรวจสอบค่า VIF ทีหลัง
 ~~~
 library(car)
@@ -199,5 +199,5 @@ F-statistic: 33.78 on 3 and 28 DF,  p-value: 1.92e-09
          23.40055          22.59157          25.16234          19.21474          16.88831          18.70825 
 ~~~
 # Conclusion
-## Model 2 ให้ค่า R-squared ที่สูงกว่า model 1 
+## model 2 ให้ค่า R-squared ที่สูงกว่า model 1 
 > จากค่า Multiple R-squared ของ Model 1 อยู่ที่ 0.775 ในขณะที่ของ Model 2 อยู่ที่  0.7835 แสดงว่า model 2 ดีกว่า model 1 (แต่ก็ไม่ได้ดีกว่ากันมาก เพราะค่าต่างกันค่อนข้างน้อย หรืออาจจะสรุปไม่ได้ว่า model 2 ดีกว่า model 1 เพราะไม่ได้ต่างกันอย่างมีนัยสำคัญ) และหากเทียบค่า Adjusted R-squared และ F-statistic ก็จะพบว่า model 2 สูงกว่า model 1 เล็กน้อย จึงสรุปได้ว่าหากต้องเลือกใช้ model ตัวไหน ก็คงเลือก model II เพราะให้ค่า R^2 ที่สูงกว่า  
