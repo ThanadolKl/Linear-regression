@@ -7,17 +7,31 @@
 * Filter independence variables
 * Model I and assumption check
 * Model II and assumption check
-## library 
-
-# Dataset
-> เพื่อความง่ายในการดู correlation ของข้อมูล เราจึงทำการ Visualize cor(mtcars) ก่อน 
+* Conclusion
+---
+## Install packages and data visualization
+### Install packages 
+~~~
+install.packages("corrplot")
+install.packages("tidyr")
+install.packages("ggfortify")
+install.packages("lmtest")
+install.packages("car")
+~~~
+### Dataset visualization
+> เพื่อความง่ายในการดู correlation ของข้อมูล เราจึงทำการ Visualize cor(mtcars) ก่อน
 ~~~ 
+car_dat = mtcars
+cor_dat <- cor(car_dat)
 corrplot(cor_dat, method="color", col=col(200),  
          type="lower", order="original", 
          addCoef.col = "black", 
          tl.col="black", tl.srt=45) 
 ~~~
 ![cor_plot_number](https://user-images.githubusercontent.com/67301601/131223486-f49bb62c-733b-418f-afe4-273dcb55377f.png)
+> จะเห็นว่า จากตารางแสดง cor(mtcars) ซึ่งค่อนข้างดูยาก เมื่อนำมา Visualize จะทำให้สังเกตเห็นความสัมพันธ์ที่ง่ายมากขึ้น
+---
+## Filter independence variables
 
  
 # Model 1 
