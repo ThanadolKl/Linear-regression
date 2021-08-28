@@ -135,7 +135,7 @@ F-statistic: 32.15 on 3 and 28 DF,  p-value: 3.28e-09
          23.42031          23.42031          24.81554          19.30928          15.50773          19.23130 
 ~~~
 ---
-# Model 2
+## Model II
 > Model 2 เราเลือกใช้ Regressors 3 ตัว คือ 1. disp, 2. = drat, 3. =  wt  ซึ่งจากรูป cor ข้างบนจะเห็นว่ามีบางตัวแปรค่อนข้างมี strong correlation แต่เราจะนำไปตรวจสอบ Multicollinearity ทีหลัง
 ~~~
 model2 <- lm(mpg~disp+drat+wt, data = car_dat)
@@ -146,7 +146,7 @@ summary(model2)
 ![model2_disp2](https://user-images.githubusercontent.com/67301601/131224255-7f696ed8-9d98-4739-9301-846687b14018.png)
 ![model2_drat2](https://user-images.githubusercontent.com/67301601/131224295-4b6284ad-e915-41f2-9d7e-e755fd3d93e7.png)
 ![wt2](https://user-images.githubusercontent.com/67301601/131224306-6c6b8ccb-54ed-4cfa-b440-ef43fa95e8ad.png)
-> จะเห็นว่าความสัมพันธ์ระหว่าง x1, x2, x3 กับ Y (mpg) ค่อนข้างเป็น linear
+> จะเห็นว่าความสัมพันธ์ระหว่าง x1, x2, x3 กับ Y (mpg) ค่อนข้างเป็น linear ดังนั้น assumption ข้อนี้เลยผ่าน
 ### 2. Independence 
 > mtcars dataset ไม่ใช่ serial data ดังนั้นข้อมูลแต่ละตัวจะเป็นอิสระต่อกันอยู่แล้ว
 ### 3. Normality
@@ -161,6 +161,7 @@ autoplot(model2)
 # 5. Multicollinearity (check by VIF)
 > จากการดูความสัมพันธ์ของข้อมูลพบว่ามี x บางตัวที่มี Strong correlation แต่จากการกรองตัวแปรที่พอจะใช้ได้ ก็จำเป็นต้องใช้ตัวแปรที่มี strong correlation อันนี้ แล้วค่อยนำไปตรวจสอบค่า VIF ทีหลัง
 ~~~
+library(car)
 vif(model1)
 ~~~
 > Output 
@@ -168,8 +169,8 @@ vif(model1)
     disp     drat       wt 
 5.018343 2.155314 5.050627 
 ~~~
-> จะเห็นว่าค่า VIF <10 ดังนั้น model นี้ ยังไม่เกิด Multicollinearity
-### Summary model  2
+> จะเห็นว่าค่า VIF <10 ดังนั้น model นี้ ยังไม่เกิด Multicollinearity แต่ก็มีแนวโน้มที่จะเกิด
+### Summary model II
 ~~~
 Call:
 lm(formula = mpg ~ disp + drat + wt, data = car_dat)
@@ -191,8 +192,12 @@ Residual standard error: 2.951 on 28 degrees of freedom
 Multiple R-squared:  0.7835,	Adjusted R-squared:  0.7603 
 F-statistic: 33.78 on 3 and 28 DF,  p-value: 1.92e-09
 ~~~
-
-
+### Prediction from model II 
+~~~
+> head(pred2)
+        Mazda RX4     Mazda RX4 Wag        Datsun 710    Hornet 4 Drive Hornet Sportabout           Valiant 
+         23.40055          22.59157          25.16234          19.21474          16.88831          18.70825 
+~~~
 # Conclusion
 ## Model 2 ให้ค่า R-squared ที่สูงกว่า model 1 
-> จากค่า Multiple R-squared ของ Model 1 อยู่ที่ 0.775 ในขณะที่ของ Model 2 อยู่ที่  0.7835 แสดงว่า model 2 ดีกว่า model 1 (แต่ก็ไม่ได้ดีกว่ามาก เพราะค่าต่างกันค่อนข้างน้อย หรืออาจจะสรุปไม่ได้ว่า model 2 ดีกว่า model 1 เพราะไม่ได้ต่างอย่างมีนัยสำคัญ) และหากเทียบค่า Adjusted R-squared และ F-statistic ก็จะพบว่า model 2 สูงกว่า model 1 เล็กน้อย 
+> จากค่า Multiple R-squared ของ Model 1 อยู่ที่ 0.775 ในขณะที่ของ Model 2 อยู่ที่  0.7835 แสดงว่า model 2 ดีกว่า model 1 (แต่ก็ไม่ได้ดีกว่ากันมาก เพราะค่าต่างกันค่อนข้างน้อย หรืออาจจะสรุปไม่ได้ว่า model 2 ดีกว่า model 1 เพราะไม่ได้ต่างกันอย่างมีนัยสำคัญ) และหากเทียบค่า Adjusted R-squared และ F-statistic ก็จะพบว่า model 2 สูงกว่า model 1 เล็กน้อย จึงสรุปได้ว่าหากต้องเลือกใช้ model ตัวไหน ก็คงเลือก model II เพราะให้ค่า R^2 ที่สูงกว่า  
