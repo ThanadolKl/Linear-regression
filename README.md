@@ -69,3 +69,15 @@ Residual standard error: 3.008 on 28 degrees of freedom
 Multiple R-squared:  0.775,	Adjusted R-squared:  0.7509 
 F-statistic: 32.15 on 3 and 28 DF,  p-value: 3.28e-09
 ~~~
+
+# Model 2
+> Model 2 เราเลือกใช้ Regressors 3 ตัว คือ 1. disp, 2. = drat, 3. =  wt  ซึ่งจากรูป cor ข้างบนจะเห็นว่ามีบางตัวแปรค่อนข้างมี strong correlation แต่เราจะนำไปตรวจสอบ Multicollinearity ทีหลัง
+~~~
+model2 <- lm(mpg~disp+drat+wt, data = car_dat)
+summary(model2)
+~~~
+## check Assumptions 
+### 1. linearity 
+![model2_disp2](https://user-images.githubusercontent.com/67301601/131224255-7f696ed8-9d98-4739-9301-846687b14018.png)
+![model2_drat2](https://user-images.githubusercontent.com/67301601/131224295-4b6284ad-e915-41f2-9d7e-e755fd3d93e7.png)
+![wt2](https://user-images.githubusercontent.com/67301601/131224306-6c6b8ccb-54ed-4cfa-b440-ef43fa95e8ad.png)
