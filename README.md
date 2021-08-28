@@ -81,3 +81,53 @@ summary(model2)
 ![model2_disp2](https://user-images.githubusercontent.com/67301601/131224255-7f696ed8-9d98-4739-9301-846687b14018.png)
 ![model2_drat2](https://user-images.githubusercontent.com/67301601/131224295-4b6284ad-e915-41f2-9d7e-e755fd3d93e7.png)
 ![wt2](https://user-images.githubusercontent.com/67301601/131224306-6c6b8ccb-54ed-4cfa-b440-ef43fa95e8ad.png)
+> จะเห็นว่าความสัมพันธ์ระหว่าง x1, x2, x3 กับ Y (mpg) ค่อนข้างเป็น linear
+### 2. Independence 
+> mtcars dataset ไม่ใช่ serial data ดังนั้นข้อมูลแต่ละตัวจะเป็นอิสระต่อกันอยู่แล้ว
+### 3. Normality
+~~~
+library(ggfortify)
+autoplot(model2)
+~~~
+![model2_normal](https://user-images.githubusercontent.com/67301601/131224333-24faa0a6-edf6-4b00-abdd-baf0521a4642.png)
+> จะเห็นว่า กราฟที่ 1(บนซ้าย) Residuals vs fitted จะกระจายตัวกันแบบไม่มี Pattern และ กราฟที่ 2 (บนขวา) Normal Q-Q ข้อมูลกระจายตัวค่อน Normal มี Outliers อยู่ด้านบน ๆ
+### 4. Equal variance
+
+# 5. Multicollinearity (check by VIF)
+> จากการดูความสัมพันธ์ของข้อมูลพบว่ามี x บางตัวที่มี Strong correlation แต่จากการกรองตัวแปรที่พอจะใช้ได้ ก็จำเป็นต้องใช้ตัวแปรที่มี strong correlation อันนี้ แล้วค่อยนำไปตรวจสอบค่า VIF ทีหลัง
+~~~
+vif(model1)
+~~~
+> Output 
+~~~
+    disp     drat       wt 
+5.018343 2.155314 5.050627 
+~~~
+> จะเห็นว่าค่า VIF <10 ดังนั้น model นี้ ยังไม่เกิด Multicollinearity
+### Summary model  2
+~~~
+Call:
+lm(formula = mpg ~ disp + drat + wt, data = car_dat)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-3.2342 -2.3719 -0.3148  1.6315  6.2820 
+
+Coefficients:
+             Estimate Std. Error t value Pr(>|t|)    
+(Intercept) 31.043257   7.099792   4.372 0.000154 ***
+disp        -0.016389   0.009578  -1.711 0.098127 .  
+drat         0.843965   1.455051   0.580 0.566537    
+wt          -3.172482   1.217157  -2.606 0.014495 *  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 2.951 on 28 degrees of freedom
+Multiple R-squared:  0.7835,	Adjusted R-squared:  0.7603 
+F-statistic: 33.78 on 3 and 28 DF,  p-value: 1.92e-09
+~~~
+
+
+# Conclusion
+## Model 2 ให้ค่า R-squared ที่สูงกว่า model 1 
+> จากค่า Multiple R-squared ของ Model 1 อยู่ที่ 0.775 ในขณะที่ของ Model 2 อยู่ที่  0.7835 แสดงว่า model 2 ดีกว่า model 1 (แต่ก็ไม่ได้ดีกว่ามาก เพราะค่าต่างกันค่อนข้างน้อย หรืออาจจะสรุปไม่ได้ว่า model 2 ดีกว่า model 1 เพราะไม่ได้ต่างอย่างมีนัยสำคัญ) และหากเทียบค่า Adjusted R-squared และ F-statistic ก็จะพบว่า model 2 สูงกว่า model 1 เล็กน้อย 
