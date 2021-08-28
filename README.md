@@ -47,3 +47,25 @@ vif(model1)
     disp       hp     drat 
 4.621988 2.868264 2.166843 
 ~~~
+> จะเห็นว่าค่า VIF <10 ดังนั้น model นี้ ยังไม่เกิด Multicollinearity
+### Summary model  1 
+~~~
+lm(formula = mpg ~ disp + hp + drat, data = car_dat)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-5.1225 -1.8454 -0.4456  1.1342  6.4958 
+
+Coefficients:
+             Estimate Std. Error t value Pr(>|t|)   
+(Intercept) 19.344293   6.370882   3.036  0.00513 **
+disp        -0.019232   0.009371  -2.052  0.04960 * 
+hp          -0.031229   0.013345  -2.340  0.02663 * 
+drat         2.714975   1.487366   1.825  0.07863 . 
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 3.008 on 28 degrees of freedom
+Multiple R-squared:  0.775,	Adjusted R-squared:  0.7509 
+F-statistic: 32.15 on 3 and 28 DF,  p-value: 3.28e-09
+~~~
