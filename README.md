@@ -8,6 +8,7 @@ corrplot(cor_dat, method="color", col=col(200),
          addCoef.col = "black", # Add coefficient of correlation
          tl.col="black", tl.srt=45) #Text label color and rotation)
 ~~~
+![cor_plot_number](https://user-images.githubusercontent.com/67301601/131223486-f49bb62c-733b-418f-afe4-273dcb55377f.png)
 
 
 
