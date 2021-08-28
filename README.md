@@ -95,8 +95,10 @@ autoplot(model1)
 
 ### 5. Multicollinearity (check by VIF)
 > จากการดูความสัมพันธ์ของข้อมูลพบว่ามี x บางตัวที่มี Strong correlation แต่จากการกรองตัวแปรที่พอจะใช้ได้ ก็จำเป็นต้องใช้ตัวแปรที่มี strong correlation อันนี้ แล้วค่อยนำไปตรวจสอบค่า VIF ทีหลัง
-> ซึ่งค่า VIF คือ 
+
+> ซึ่งค่า VIF คือ ค่าที่จะสะท้อนให้เห็นถึงอิทธิพลร่วมของตัวแปรทำนาย (predictor) ในตัวแบบเส้นตรง ซึ่งค่าไม่ควรเกิน 10 หากเกินแสดงว่า model อาจเกิด Multicollinearity
 ~~~
+library(car)
 vif(model1)
 ~~~
 > Output 
@@ -105,7 +107,7 @@ vif(model1)
 4.621988 2.868264 2.166843 
 ~~~
 > จะเห็นว่าค่า VIF <10 ดังนั้น model นี้ ยังไม่เกิด Multicollinearity
-### Summary model  1 
+### Summary model I 
 ~~~
 lm(formula = mpg ~ disp + hp + drat, data = car_dat)
 
@@ -126,7 +128,13 @@ Residual standard error: 3.008 on 28 degrees of freedom
 Multiple R-squared:  0.775,	Adjusted R-squared:  0.7509 
 F-statistic: 32.15 on 3 and 28 DF,  p-value: 3.28e-09
 ~~~
-
+### Prediction from model I
+~~~
+> head(pred1)
+        Mazda RX4     Mazda RX4 Wag        Datsun 710    Hornet 4 Drive Hornet Sportabout           Valiant 
+         23.42031          23.42031          24.81554          19.30928          15.50773          19.23130 
+~~~
+---
 # Model 2
 > Model 2 เราเลือกใช้ Regressors 3 ตัว คือ 1. disp, 2. = drat, 3. =  wt  ซึ่งจากรูป cor ข้างบนจะเห็นว่ามีบางตัวแปรค่อนข้างมี strong correlation แต่เราจะนำไปตรวจสอบ Multicollinearity ทีหลัง
 ~~~
