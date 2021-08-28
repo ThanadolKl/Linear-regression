@@ -1,7 +1,13 @@
 # Linear-regression 
-# Authors : Thanadol Klainin 6S No.8 |  Chalisa Pornsukjantra 6C No.6 
-# ESC 782 DSS
-# library 
+## Authors : Thanadol Klainin 6S No.8 |  Chalisa Pornsukjantra 6C No.6 
+### ESC 782 DSS
+---
+## Contents
+* Install package and data visualize
+* Filter independence variables
+* Model I and assumption check
+* Model II and assumption check
+## library 
 
 # Dataset
 > เพื่อความง่ายในการดู correlation ของข้อมูล เราจึงทำการ Visualize cor(mtcars) ก่อน 
