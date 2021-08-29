@@ -5,8 +5,8 @@
 ## Contents
 * Install package and data visualize
 * Filter independence variables
-* Model I and assumption check
-* Model II and assumption check
+* Model I and assumption evaluated 
+* Model II and assumption evaluated
 * Conclusion
 ---
 ## Install packages and data visualization
@@ -68,19 +68,20 @@ Ferrari Dino        19.7   6 145.0 175 3.62 2.770 15.50  0  1    5    6
 Maserati Bora       15.0   8 301.0 335 3.54 3.570 14.60  0  1    5    8
 Volvo 142E          21.4   4 121.0 109 4.11 2.780 18.60  1  1    4    2
  ~~~
- > จากข้อมูล mtcars จะเห็นว่ามีตัวแปรค่อนข้างเยอะ และเมื่อทำการกรองคร่าว ๆ จะได้ว่า ข้อมูล  mpg, disp, hp, drat, wt, qsec จะเป็นข้อมูลที่ดูเหมือน continuous ในขณะที่ข้อมูล cyl, gear, carb จะแสดงเป็นจำนวนเต็มที่มีค่าซ้ำ ๆ กัน ทำให้ถ้านำมาทำ regression จะได้ว่า เมื่อแทนค่า x ที่เป็นค่าเดียวกัน จะได้ค่า y_pred ออกมาเหมือนกัน ทัง ๆ ที่ค่าข้อมูลจริงที่มีค่า x เท่ากัน ก็ให้ค่า y_true ที่ต่างกันหลายตัว ในขณะที่ข้อมูล vs และ am ดูเหมือนเป็นการแบ่ง class มากกว่า และยังแสดงค่าเป็น 0, 1 อีกด้วย เราจึงเลือกใช้ข้อมูล disp, hp, drat, wt ใน 2 models โดยใน model I ใช้ disp, hp, drat ในขณะที่ model 2 เปลี่ยนมาใช้  disp, drat, wt ซึ่งอาจจะดูเหมือนมี strong correlation แต่ก็จำเป็นต้องใช้
+ > จากข้อมูล mtcars จะเห็นว่ามีตัวแปรค่อนข้างเยอะ และเมื่อทำการกรองคร่าว ๆ จะได้ว่า ข้อมูล  mpg, disp, hp, drat, wt, qsec จะเป็นข้อมูลที่ดูเหมือน continuous ในขณะที่ข้อมูล cyl, gear, carb จะแสดงเป็นจำนวนเต็มที่มีค่าซ้ำ ๆ กัน ทำให้ถ้านำมาทำ regression จะได้ว่า เมื่อแทนค่า x ที่เป็นค่าเดียวกัน จะได้ค่า y_pred ออกมาเหมือนกัน ทัง ๆ ที่ค่าข้อมูลจริงที่มีค่า x เท่ากัน ก็ให้ค่า y_true ที่ต่างกันหลายตัว ในขณะที่ข้อมูล vs และ am ดูเหมือนเป็นการแบ่ง class มากกว่า และยังแสดงค่าเป็น 0, 1 อีกด้วย เราจึงเลือกใช้ข้อมูล disp, hp, drat, wt, qsec ใน 2 models โดยใน model I ใช้ disp, hp, qsec ในขณะที่ model 2 เปลี่ยนมาใช้  disp, drat, wt ซึ่งอาจจะดูเหมือนมี strong correlation แต่ก็จำเป็นต้องใช้
 ---
-## Model I and assumption check
-> Model 1 เราเลือกใช้ Regressors 3 ตัว คือ 1. disp, 2. hp, 3. drat  ซึ่งจากรูป cor ข้างบนจะเห็นว่ามีบางตัวแปรค่อนข้างมี strong correlation แต่เราจะนำไปตรวจสอบ Multicollinearity ทีหลัง 
+## Model I and assumption evaluated
+> Model 1 เราเลือกใช้ Regressors 3 ตัว คือ 1. disp, 2. hp, 3. qsec  ซึ่งจากรูป cor ข้างบนจะเห็นว่ามีบางตัวแปรค่อนข้างมี strong correlation แต่เราจะนำไปตรวจสอบ Multicollinearity ทีหลัง 
 ~~~
-model1 <- lm(mpg~disp+hp+drat, data = car_dat)
+model1 <- lm(mpg~disp+hp+qsec, data = car_dat)
 summary(model1)
 ~~~
-## check Assumptions 
+## Check assumptions 
 ### 1. linearity 
 ![model1_disp](https://user-images.githubusercontent.com/67301601/131223659-cf25acc4-b4eb-4da8-84da-1eda6dd52e03.png)
 ![model1_hp](https://user-images.githubusercontent.com/67301601/131223677-64a4423b-2fd6-4c25-a571-b2b548413636.png)
-![model1_drat](https://user-images.githubusercontent.com/67301601/131223688-067ad237-b6f7-4e61-b948-e1e79946f27b.png)
+![model1_qsec](https://user-images.githubusercontent.com/67301601/131238845-b3bd95fc-0e85-4c73-9677-bf488e67caa2.png)
+
 > จะเห็นว่าความสัมพันธ์ระหว่าง x1, x2, x3 กับ Y (mpg) ค่อนข้างเป็น linear ดังนั้น assumption ข้อนี้เลยผ่าน
 ### 2. Independence 
 > mtcars dataset ไม่ใช่ serial data ดังนั้นข้อมูลแต่ละตัวจะเป็นอิสระต่อกันอยู่แล้ว
@@ -89,8 +90,8 @@ summary(model1)
 library(ggfortify)
 autoplot(model1)
 ~~~
-![model1_normality](https://user-images.githubusercontent.com/67301601/131223820-462dc4f2-cc23-4a56-a1fc-d8768868b5b7.png)
-> จะเห็นว่า กราฟที่ 1(บนซ้าย) Residuals vs fitted จะกระจายตัวกันแบบไม่มี Pattern คิดว่าน่าจะเป็น well-behaved plot และ กราฟที่ 2 (บนขวา) Normal Q-Q ข้อมูลกระจายตัวค่อน Normal มี Outliers อยู่ด้านบน ๆ
+![nor1](https://user-images.githubusercontent.com/67301601/131238863-d8a2b057-bafa-4ae7-9b5a-bd9c0b3e5951.png)
+> จะเห็นว่า กราฟที่ 1(บนซ้าย) Residuals vs fitted จะกระจายตัวกันแบบไม่มี Pattern คิดว่าน่าจะเป็น well-behaved plot และ กราฟที่ 2 (บนขวา) Normal Q-Q ข้อมูลกระจายตัวค่อน Normal ยังไม่ถือว่าเป็น Skewed residuals, Heavy-tailed residuals
 ### 4. Equal variance
 
 ### 5. Multicollinearity (check by VIF)
@@ -103,36 +104,40 @@ vif(model1)
 ~~~
 > Output 
 ~~~
-    disp       hp     drat 
-4.621988 2.868264 2.166843 
+> vif(model1)
+    disp       hp     qsec 
+2.921334 4.758739 2.194433 
 ~~~
 > จะเห็นว่าค่า VIF <10 ดังนั้น model นี้ ยังไม่เกิด Multicollinearity
 ### Summary model I 
 ~~~
-lm(formula = mpg ~ disp + hp + drat, data = car_dat)
+> summary(model1)
+
+Call:
+lm(formula = mpg ~ disp + hp + qsec, data = car_dat)
 
 Residuals:
     Min      1Q  Median      3Q     Max 
--5.1225 -1.8454 -0.4456  1.1342  6.4958 
+-4.5029 -2.6417 -0.6002  1.9749  7.2263 
 
 Coefficients:
-             Estimate Std. Error t value Pr(>|t|)   
-(Intercept) 19.344293   6.370882   3.036  0.00513 **
-disp        -0.019232   0.009371  -2.052  0.04960 * 
-hp          -0.031229   0.013345  -2.340  0.02663 * 
-drat         2.714975   1.487366   1.825  0.07863 . 
+             Estimate Std. Error t value Pr(>|t|)    
+(Intercept) 38.622206   9.668300   3.995 0.000426 ***
+disp        -0.028468   0.007787  -3.656 0.001049 ** 
+hp          -0.034642   0.017967  -1.928 0.064041 .  
+qsec        -0.385561   0.468127  -0.824 0.417114    
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
-Residual standard error: 3.008 on 28 degrees of freedom
-Multiple R-squared:  0.775,	Adjusted R-squared:  0.7509 
-F-statistic: 32.15 on 3 and 28 DF,  p-value: 3.28e-09
+Residual standard error: 3.144 on 28 degrees of freedom
+Multiple R-squared:  0.7542,	Adjusted R-squared:  0.7279 
+F-statistic: 28.64 on 3 and 28 DF,  p-value: 1.118e-08
 ~~~
 ### Prediction from model I
 ~~~
 > head(pred1)
         Mazda RX4     Mazda RX4 Wag        Datsun 710    Hornet 4 Drive Hornet Sportabout           Valiant 
-         23.42031          23.42031          24.81554          19.30928          15.50773          19.23130 
+         23.91033          23.69442          25.15065          19.97145          15.74901          20.78338 
 ~~~
 ---
 ## Model II
@@ -200,4 +205,4 @@ F-statistic: 33.78 on 3 and 28 DF,  p-value: 1.92e-09
 ~~~
 # Conclusion
 ## model 2 ให้ค่า R-squared ที่สูงกว่า model 1 
-> จากค่า Multiple R-squared ของ Model 1 อยู่ที่ 0.775 ในขณะที่ของ Model 2 อยู่ที่  0.7835 แสดงว่า model 2 ดีกว่า model 1 (แต่ก็ไม่ได้ดีกว่ากันมาก เพราะค่าต่างกันค่อนข้างน้อย หรืออาจจะสรุปไม่ได้ว่า model 2 ดีกว่า model 1 เพราะไม่ได้ต่างกันอย่างมีนัยสำคัญ) และหากเทียบค่า Adjusted R-squared และ F-statistic ก็จะพบว่า model 2 สูงกว่า model 1 เล็กน้อย จึงสรุปได้ว่าหากต้องเลือกใช้ model ตัวไหน ก็คงเลือก model II เพราะให้ค่า R^2 ที่สูงกว่า  
+> จากค่า Multiple R-squared ของ Model 1 อยู่ที่ 0.7542 ในขณะที่ของ Model 2 อยู่ที่  0.7835 แสดงว่า model 2 ดีกว่า model 1 (แต่ก็ไม่ได้ดีกว่ากันมาก เพราะค่าต่างกันค่อนข้างน้อย) และหากเทียบค่า Adjusted R-squared และ F-statistic ก็จะพบว่า model 2 สูงกว่า model 1  จึงสรุปได้ว่าหากต้องเลือกใช้ model ตัวไหน ก็คงเลือก model II เพราะให้ค่า R^2 ที่สูงกว่า และดีกว่า model I ซึ่งคาดการณ์ได้ว่าเป็นเพราะข้อมูล qsec ใน model I มี correlation ที่ค่อนข้าง weak กับ mpg ทำให้ค่า R^2 ที่ได้ ต่ำกว่า model II
