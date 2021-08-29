@@ -93,7 +93,7 @@ autoplot(model1)
 ![nor1](https://user-images.githubusercontent.com/67301601/131238863-d8a2b057-bafa-4ae7-9b5a-bd9c0b3e5951.png)
 > จะเห็นว่า กราฟที่ 1(บนซ้าย) Residuals vs fitted จะกระจายตัวกันแบบไม่มี Pattern คิดว่าน่าจะเป็น well-behaved plot และ กราฟที่ 2 (บนขวา) Normal Q-Q ข้อมูลกระจายตัวค่อน Normal ยังไม่ถือว่าเป็น Skewed residuals, Heavy-tailed residuals
 ### 4. Equal variance
-> Check การกระจายตัวของ Standradize Residual เทียบ Independece variable ทีละตัว จะได้กรา 3 กราฟ 
+> Check การกระจายตัวของ Standradize Residual เทียบ Independece variable ทีละตัว จะได้กราฟ 3 กราฟ 
 ![eq1_1](https://user-images.githubusercontent.com/67301601/131242333-d7964285-00e4-47c7-9357-2beedbfe322c.png)
 > จากกราฟนี้จะเห็นว่าการกระจายตัวของ Standardize residuals มีการกระจายตัวทั้งด้านบวกและลบ ไม่มี Pattern ที่จะกลายเป็น heteroscedasticity
 ![eq1_2](https://user-images.githubusercontent.com/67301601/131242334-de17fea1-4b6e-4b95-83b4-affb667d8d2a.png)
@@ -168,7 +168,13 @@ autoplot(model2)
 ![model2_normal](https://user-images.githubusercontent.com/67301601/131224333-24faa0a6-edf6-4b00-abdd-baf0521a4642.png)
 > จะเห็นว่า กราฟที่ 1(บนซ้าย) Residuals vs fitted จะกระจายตัวกันแบบไม่มี Pattern และ กราฟที่ 2 (บนขวา) Normal Q-Q ข้อมูลกระจายตัวค่อน Normal มี Outliers อยู่ด้านบน ๆ
 ### 4. Equal variance
-
+> Check การกระจายตัวของ Standradize Residual เทียบ Independece variable ทีละตัว จะได้กราฟ 3 กราฟ 
+![eq2_1](https://user-images.githubusercontent.com/67301601/131242602-a1032aa7-ee21-4f54-a217-7ef1b109f9e3.png)
+> residual มีการกระจายตัวทั้งด้านบวกและลบ ถือว่าไม่เป็น heteroscedasticity
+![eq2_2](https://user-images.githubusercontent.com/67301601/131242604-6e2d8371-ced9-456e-b8c5-2996afc70953.png)
+> residual มีการกระจายตัวทั้งด้านบวกและลบ ไม่มี pattern ลู่เข้าหากันหรือลู่ออก
+![eq2_3](https://user-images.githubusercontent.com/67301601/131242605-7703cea6-8652-4546-8631-d7235ec81fbd.png)
+> residual มีการกระจายตัวทั้งด้านบวกและลบ ไม่มี pattern ลู่เข้าหากันหรือลู่ออก
 ### 5. Multicollinearity (check by VIF)
 > จากการดูความสัมพันธ์ของข้อมูลพบว่ามี x บางตัวที่มี Strong correlation แต่จากการกรองตัวแปรที่พอจะใช้ได้ ก็จำเป็นต้องใช้ตัวแปรที่มี strong correlation อันนี้ แล้วค่อยนำไปตรวจสอบค่า VIF ทีหลัง
 ~~~
