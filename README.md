@@ -82,7 +82,7 @@ summary(model1)
 ![model1_hp](https://user-images.githubusercontent.com/67301601/131223677-64a4423b-2fd6-4c25-a571-b2b548413636.png)
 ![model1qsec](https://user-images.githubusercontent.com/67301601/131242543-32d04307-f32d-448e-bcaa-85de39713fa2.png)
 
-> จะเห็นว่าความสัมพันธ์ระหว่าง x1, x2, x3 กับ Y (mpg) ค่อนข้างเป็น linear ดังนั้น assumption ข้อนี้เลยผ่าน
+> จะเห็นว่าความสัมพันธ์ระหว่าง x1, x2 กับ Y (mpg) ค่อนข้างเป็น linear ในขณะที่ x3 (qsec) มีความสัมพันธ์ที่เห็นได้ไม่ใช่ แต่ก็ไม่ใช้ curve ดังนั้น assumption ข้อนี้เลยผ่าน
 ### 2. Independence 
 > mtcars dataset ไม่ใช่ serial data ดังนั้นข้อมูลแต่ละตัวจะเป็นอิสระต่อกันอยู่แล้ว
 ### 3. Normality
