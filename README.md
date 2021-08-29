@@ -80,7 +80,7 @@ summary(model1)
 ### 1. linearity 
 ![model1_disp](https://user-images.githubusercontent.com/67301601/131223659-cf25acc4-b4eb-4da8-84da-1eda6dd52e03.png)
 ![model1_hp](https://user-images.githubusercontent.com/67301601/131223677-64a4423b-2fd6-4c25-a571-b2b548413636.png)
-![model1_qsec](https://user-images.githubusercontent.com/67301601/131242487-69dd8cc9-0ed9-4eea-af5e-8e204869a1bb.png)
+![model1qsec](https://user-images.githubusercontent.com/67301601/131242543-32d04307-f32d-448e-bcaa-85de39713fa2.png)
 
 > จะเห็นว่าความสัมพันธ์ระหว่าง x1, x2, x3 กับ Y (mpg) ค่อนข้างเป็น linear ดังนั้น assumption ข้อนี้เลยผ่าน
 ### 2. Independence 
