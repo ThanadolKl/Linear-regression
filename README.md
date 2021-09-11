@@ -28,7 +28,7 @@ corrplot(cor_dat, method="color", col=col(200),
          addCoef.col = "black", 
          tl.col="black", tl.srt=45) 
 ~~~
-![cor_plot_number](https://user-images.githubusercontent.com/67301601/131223486-f49bb62c-733b-418f-afe4-273dcb55377f.png)
+![cor_plot_number](https://user-images.githubusercontent.com/67301601/131223486-f49bb62c-733b-418f-afe4-273dcb55377f.png){ width=50% }
 
 > จะเห็นว่า จากตารางแสดง cor(mtcars) ซึ่งค่อนข้างดูยาก เมื่อนำมา Visualize จะทำให้สังเกตเห็นความสัมพันธ์ที่ง่ายมากขึ้น
 ---
